@@ -4,7 +4,7 @@ require 'csv'
 require 'net/ftp'
 require 'tempfile'
 
-require 'nokogiri'
+require 'smarter_csv'
 require 'active_support/all'
 
 require 'orion/base'

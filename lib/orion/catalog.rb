@@ -1,8 +1,7 @@
 module Orion
   class Catalog < Base
 
-    CATALOG_FILENAME = 'vendorname_items.xml'
-    ITEM_NODE_NAME   = 'item'
+    CATALOG_FILENAME_PREFIX = 'orion_inv_web_'
 
     PERMITTED_FEATURES = [
       'Action',
@@ -53,13 +52,23 @@ module Orion
       tempfile = get_file(CATALOG_FILENAME)
       items = []
 
-      Nokogiri::XML::Reader.from_io(tempfile).each do |node|
-        next unless node.node_type == Nokogiri::XML::Reader::TYPE_ELEMENT
-        next unless node.name == ITEM_NODE_NAME
+      File.open(tempfile).each_with_index do |row, i|
+        row = row.split("\t")
+        
+        if i==0
+          headers = row
+          next
+        end
 
-        _map_hash = map_hash(Nokogiri::XML::DocumentFragment.parse(node.inner_xml))
+        item = {
+          mfg_number: row[headers.index('Item ID')].strip,
+          upc:        row[headers.index('Bar Code')].strip,
+          name:       row[headers.index('Description')].strip,
+          quantity:   row[headers.index('Qty available')].to_i,
+          price:      row[headers.index('Price')].strip,
+        }
 
-        items << _map_hash unless _map_hash.nil?
+        items << item
       end
 
       tempfile.close
