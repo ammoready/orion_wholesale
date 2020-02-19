@@ -3,22 +3,9 @@ module Orion
 
     def self.connect(options = {})
       requires!(options, :username, :password)
-
-      Net::FTP.open(Orion.config.ftp_host, options[:username], options[:password]) do |ftp|
-        begin
-          ftp.debug_mode = Orion.config.debug_mode
-          ftp.passive = true
-          yield ftp
-        ensure
-          ftp.close
-        end
-      end
-    rescue Net::FTPPermError => e
-      raise case
-      when e.message =~ /no such file or directory/i
-        Orion::FileOrDirectoryNotFound
-      else
-        Orion::NotAuthenticated
+      
+      Net::SFTP.start(Orion.config.ftp_host, options[:username], password: options[:password], port: Orion.config.ftp_port) do |sftp|
+        yield(sftp)
       end
     end
 
@@ -44,11 +31,11 @@ module Orion
 
     # Instance methods become class methods through inheritance
     def connect(options)
-      self.class.connect(options) do |ftp|
+      self.class.connect(options) do |sftp|
         begin
-          yield ftp
+          yield(sftp)
         ensure
-          ftp.close
+          sftp.close
         end
       end
     end

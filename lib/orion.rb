@@ -1,10 +1,9 @@
 require 'orion/version'
 
 require 'csv'
-require 'net/ftp'
+require 'net/sftp'
 require 'tempfile'
 
-require 'smarter_csv'
 require 'active_support/all'
 
 require 'orion/base'
@@ -35,11 +34,13 @@ module Orion
   class Configuration
     attr_accessor :debug_mode
     attr_accessor :ftp_host
+    attr_accessor :ftp_port
     attr_accessor :top_level_dir
 
     def initialize
       @debug_mode    ||= false
-      @ftp_host      ||= "ftp.mgegroup.com"
+      @ftp_host      ||= "74.143.53.110"
+      @ftp_port      ||= "10022"
       @top_level_dir ||= "ffldealer"
     end
   end
