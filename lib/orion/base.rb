@@ -49,7 +49,7 @@ module Orion
         node.content.try(:strip)
       end
     end
-
+    
     def get_file(filename, file_directory=nil)
       connect(@options) do |sftp|
         begin
@@ -59,6 +59,17 @@ module Orion
           
           tempfile
         end
+      end
+    end
+
+    def get_most_recent_file(file_prefix, file_directory=nil)
+      filenames = []
+
+      connect(@options) do |sftp|
+        sftp.dir.foreach(file_directory) { |entry| filenames << entry.name }
+        filename = filenames.select{ |n| n.include?(file_prefix) }.sort.last
+
+        self.class.get_file(filename, file_directory) 
       end
     end
 
