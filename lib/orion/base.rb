@@ -34,8 +34,6 @@ module Orion
       self.class.connect(options) do |sftp|
         begin
           yield(sftp)
-        ensure
-          sftp.close
         end
       end
     end
@@ -56,8 +54,8 @@ module Orion
           tempfile = Tempfile.new
           
           sftp.download!(File.join(file_directory, filename), tempfile.path)
-          
-          tempfile
+
+          return tempfile
         end
       end
     end
@@ -69,7 +67,8 @@ module Orion
         sftp.dir.foreach(file_directory) { |entry| filenames << entry.name }
         filename = filenames.select{ |n| n.include?(file_prefix) }.sort.last
 
-        self.class.get_file(filename, file_directory) 
+        tempfile = self.get_file(filename, file_directory) 
+        return tempfile
       end
     end
 

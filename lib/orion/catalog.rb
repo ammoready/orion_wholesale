@@ -1,7 +1,8 @@
 module Orion
   class Catalog < Base
-
-    CATALOG_FILENAME_PREFIX = 'orion_inv_web_'
+  
+    CATALOG_DIR             = '/ammoready'
+    CATALOG_FILENAME_PREFIX = 'orion_inv_web'
 
     PERMITTED_FEATURES = [
       'Action',
@@ -49,23 +50,23 @@ module Orion
     end
 
     def all
-      tempfile = get_file(CATALOG_FILENAME)
+      tempfile = get_most_recent_file(CATALOG_FILENAME_PREFIX, CATALOG_DIR)
       items = []
 
       File.open(tempfile).each_with_index do |row, i|
         row = row.split("\t")
         
         if i==0
-          headers = row
+          @headers = row
           next
         end
 
         item = {
-          mfg_number: row[headers.index('Item ID')].strip,
-          upc:        row[headers.index('Bar Code')].strip,
-          name:       row[headers.index('Description')].strip,
-          quantity:   row[headers.index('Qty available')].to_i,
-          price:      row[headers.index('Price')].strip,
+          mfg_number: row[@headers.index('Item ID')].strip,
+          upc:        row[@headers.index('Bar Code')].strip,
+          name:       row[@headers.index('Description')].strip,
+          quantity:   row[@headers.index('Qty available')].to_i,
+          price:      row[@headers.index('Price')].strip,
         }
 
         items << item
