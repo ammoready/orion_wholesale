@@ -40,21 +40,6 @@ module Orion
       end
     end
 
-    def get_file(filename, file_directory = nil)
-      connect(@options) do |ftp|
-        begin
-          tempfile = Tempfile.new
-
-          ftp.chdir(file_directory || Orion.config.top_level_dir)
-          ftp.getbinaryfile(filename, tempfile.path)
-
-          tempfile
-        ensure
-          ftp.close
-        end
-      end
-    end
-
     def content_for(xml_doc, field)
       node = xml_doc.css(field).first
 
@@ -62,6 +47,18 @@ module Orion
         nil
       else
         node.content.try(:strip)
+      end
+    end
+
+    def get_file(filename, file_directory=nil)
+      connect(@options) do |sftp|
+        begin
+          tempfile = Tempfile.new
+          
+          sftp.download!(File.join(file_directory, filename), tempfile.path)
+          
+          tempfile
+        end
       end
     end
 
