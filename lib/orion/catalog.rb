@@ -62,11 +62,14 @@ module Orion
         end
 
         item = {
-          mfg_number: row[@headers.index('Item ID')].strip,
-          upc:        row[@headers.index('Bar Code')].strip,
-          name:       row[@headers.index('Description')].strip,
-          quantity:   row[@headers.index('Qty available')].to_i,
-          price:      row[@headers.index('Price')].strip,
+          mfg_number:   row[@headers.index('Item ID')].strip,
+          upc:          row[@headers.index('Bar Code')].strip,
+          name:         row[@headers.index('Description')].strip,
+          quantity:     row[@headers.index('Qty available')].to_i,
+          price:        row[@headers.index('Price')].strip,
+          brand:        row[@headers.index('Brand')].strip,
+          category:     row[@headers.index('WebCatagory').strip],
+          sub_category: row[@headers.index('SubCatagory').strip],
         }
 
         items << item
