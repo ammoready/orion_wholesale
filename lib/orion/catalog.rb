@@ -34,7 +34,7 @@ module Orion
           price:        row[@headers.index('Price')].strip,
           brand:        row[@headers.index('Brand')].strip,
           category:     row[@headers.index('WebCategory')].strip,
-          sub_category: row[@headers.index("SubCategory\n")].strip,
+          subcategory:  row[@headers.index("SubCategory\n")].strip,
         }
 
         items << item
