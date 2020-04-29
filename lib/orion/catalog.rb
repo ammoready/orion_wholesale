@@ -26,6 +26,14 @@ module Orion
           next
         end
 
+        if row[@headers.index('Category1')].strip == 'Guns'
+          @category    = row[@headers.index('Category2')].strip
+          @subcategory = row[@headers.index("Category3\n")].strip
+        else
+          @category    = row[@headers.index('Category1')].strip
+          @subcategory = row[@headers.index('Category2')].strip
+        end
+
         item = {
           mfg_number:   row[@headers.index('Item ID')].strip,
           upc:          row[@headers.index('Bar Code')].strip,
@@ -33,8 +41,8 @@ module Orion
           quantity:     row[@headers.index('Qty available')].to_i,
           price:        row[@headers.index('Price')].strip,
           brand:        row[@headers.index('Brand')].strip,
-          category:     row[@headers.index('WebCategory')].strip,
-          subcategory:  row[@headers.index("SubCategory\n")].strip,
+          category:     @category,
+          subcategory:  @subcategory,
         }
 
         items << item
