@@ -27,9 +27,17 @@ module Orion
         end
 
         if row[@headers.index('Category1')].strip == 'Guns'
-          @category    = row[@headers.index('Category2')].strip
-          @subcategory = row[@headers.index("Category3\n")].strip
+          # Guns
+          case row[@headers.index('Category2')].strip
+          when 'Long Guns'
+            @category    = row[@headers.index('Category3')].strip
+            @subcategory = row[@headers.index("Category4\n")].strip
+          when 'Handguns'
+            @category    = row[@headers.index('Category2')].strip
+            @subcategory = row[@headers.index("Category3")].strip
+          end
         else
+          # Everything else
           @category    = row[@headers.index('Category1')].strip
           @subcategory = row[@headers.index('Category2')].strip
         end
