@@ -1,4 +1,4 @@
-module Orion
+module OrionWholesale
   class User < Base
 
     def initialize(options = {})
@@ -9,7 +9,7 @@ module Orion
     def authenticated?
       connect(@options) { |ftp| ftp.pwd }
       true
-    rescue Orion::NotAuthenticated
+    rescue OrionWholesale::NotAuthenticated
       false
     end
 

@@ -1,4 +1,4 @@
-module Orion
+module OrionWholesale
   class Catalog < Base
   
     CATALOG_DIR             = '/ammoready'

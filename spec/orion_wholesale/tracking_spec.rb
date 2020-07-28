@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Orion::Tracking do
+describe OrionWholesale::Tracking do
 
   let(:tracking_params) { { username: 'ammoready', password: 'password', dealer_number: '12345' } }
 
@@ -8,11 +8,11 @@ describe Orion::Tracking do
     before do
       tempfile = Tempfile.new(['12345_PackageTracking', '.csv'])
       FileUtils.copy_file(FixtureHelper.get_fixture_file('12345_PackageTracking.csv').path, tempfile.path)
-      allow_any_instance_of(Orion::Tracking).to receive(:get_file) { tempfile }
+      allow_any_instance_of(OrionWholesale::Tracking).to receive(:get_file) { tempfile }
     end
 
     it 'fetches tracking data' do
-      tracking_detail = Orion::Tracking.fetch_data(tracking_params).first
+      tracking_detail = OrionWholesale::Tracking.fetch_data(tracking_params).first
 
       expect(tracking_detail[:po_number]).to eq('123456')
       expect(tracking_detail[:carrier]).to eq('UPS')

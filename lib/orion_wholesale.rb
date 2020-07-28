@@ -1,4 +1,4 @@
-require 'orion/version'
+require 'orion_wholesale/version'
 
 require 'csv'
 require 'net/sftp'
@@ -6,15 +6,15 @@ require 'tempfile'
 
 require 'active_support/all'
 
-require 'orion/base'
-require 'orion/catalog'
-require 'orion/category'
-require 'orion/inventory'
-require 'orion/order'
-require 'orion/tracking'
-require 'orion/user'
+require 'orion_wholesale/base'
+require 'orion_wholesale/catalog'
+require 'orion_wholesale/category'
+require 'orion_wholesale/inventory'
+require 'orion_wholesale/order'
+require 'orion_wholesale/tracking'
+require 'orion_wholesale/user'
 
-module Orion
+module OrionWholesale
   class InvalidOrder < StandardError; end
   class NotAuthenticated < StandardError; end
   class FileOrDirectoryNotFound < StandardError; end

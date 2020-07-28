@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Orion::Order do
+describe OrionWholesale::Order do
 
   let(:credentials) { { username: '100001' } }
   let(:recipient) do
@@ -20,7 +20,7 @@ describe Orion::Order do
   end
 
   describe '#add_recipient' do
-    let(:order) { Orion::Order.new(credentials.merge(po_number: '100')) }
+    let(:order) { OrionWholesale::Order.new(credentials.merge(po_number: '100')) }
 
     before do
       order.add_recipient(recipient)
@@ -30,7 +30,7 @@ describe Orion::Order do
   end
 
   describe '#add_item' do
-    let(:order) { Orion::Order.new(credentials.merge(po_number: '100')) }
+    let(:order) { OrionWholesale::Order.new(credentials.merge(po_number: '100')) }
     let(:item) {
       {
         identifier: 'EE00011',
@@ -51,7 +51,7 @@ describe Orion::Order do
 
   describe '#to_csv' do
     let(:sample_order) { FixtureHelper.get_fixture_file('sample_order.csv').read }
-    let(:order) { Orion::Order.new(credentials.merge(po_number: '100')) }
+    let(:order) { OrionWholesale::Order.new(credentials.merge(po_number: '100')) }
     let(:item) {
       {
         identifier: 'EE00011',

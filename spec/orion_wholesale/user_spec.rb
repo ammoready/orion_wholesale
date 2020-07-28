@@ -1,10 +1,10 @@
 require 'spec_helper'
 
-describe Orion::User do
+describe OrionWholesale::User do
 
   describe '#new' do
     it 'is invalid without the required options' do
-      expect { Orion::User.new }.to raise_error(ArgumentError)
+      expect { OrionWholesale::User.new }.to raise_error(ArgumentError)
     end
   end
 
@@ -17,7 +17,7 @@ describe Orion::User do
       allow(ftp).to receive(:close)
     end
 
-    it { expect(Orion::User.new(username: 'usr', password: 'pass').authenticated?).to eq(true) }
+    it { expect(OrionWholesale::User.new(username: 'usr', password: 'pass').authenticated?).to eq(true) }
   end
 
 end

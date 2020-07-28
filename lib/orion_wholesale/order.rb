@@ -1,4 +1,4 @@
-module Orion
+module OrionWholesale
   # To submit an order:
   #
   # * Instantiate a new Order, passing in `:username`
