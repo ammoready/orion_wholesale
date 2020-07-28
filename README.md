@@ -1,13 +1,13 @@
-# Orion
+# OrionWholesale
 
-Ruby library for Orion.
+Ruby library for OrionWholesale.
 
 ## Installation
 
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'orion'
+gem 'orion_wholesale'
 ```
 
 And then execute:
@@ -16,7 +16,7 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install orion
+    $ gem install orion_wholesale
 
 
 
@@ -35,38 +35,38 @@ options = {
 }
 ```
 
-### Orion::Catalog
+### OrionWholesale::Catalog
 
 To get all items in the catalog:
 
 ```ruby
 catalog = []
-Orion::Catalog.new(options).all do |i|
+OrionWholesale::Catalog.new(options).all do |i|
   catalog << i
 end
 ```
 
-See `Orion::Catalog` for the response structure.
+See `OrionWholesale::Catalog` for the response structure.
 
-### Orion::Inventory
+### OrionWholesale::Inventory
 
 To get your inventory details (availability, price, etc.):
 
 ```ruby
 inventory = []
-Orion::Inventory.new(options).all do |i|
+OrionWholesale::Inventory.new(options).all do |i|
   inventory << i
 end
 ```
 
-See `Orion::Inventory` for the response structure.
+See `OrionWholesale::Inventory` for the response structure.
 
-### Orion::Category
+### OrionWholesale::Category
 
 Returns an array of category codes and descriptions.
 
 ```ruby
-categories = Orion::Category.all(options)
+categories = OrionWholesale::Category.all(options)
 
 # [
 #   {:code=>"H648", :description=>"AIRGUNS"},
@@ -75,14 +75,14 @@ categories = Orion::Category.all(options)
 # ]
 ```
 
-### Orion::Order
+### OrionWholesale::Order
 
 To build and submit an order, the basic steps are: 1) instantiate an Order object, 2) add header
 information, 3) add item information (multiple items if needed), 4) submit the order.
 
 ```ruby
 # Instantiate the Order instance, passing in your :username and :password
-order = Orion::Order.new(options)
+order = OrionWholesale::Order.new(options)
 
 # Add header information:
 header_opts = {
@@ -117,14 +117,14 @@ order.add_item(item_opts)  # Multiple items may be added, just call #add_item fo
 order.submit!
 ```
 
-See `Orion::Order` for details on required options.
+See `OrionWholesale::Order` for details on required options.
 
-### Orion::Tracking
+### OrionWholesale::Tracking
 
 For fetching tracking data for individual order fulfillments.
 
 ```ruby
-tracking_details = Orion::Tracking.fetch_data(options)
+tracking_details = OrionWholesale::Tracking.fetch_data(options)
 
 # [
 #   {:po_number=>"12345", :carrier=>"UPS", :tracking_numbers=>['123456789']},
@@ -141,7 +141,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/ammoready/orion.
+Bug reports and pull requests are welcome on GitHub at https://github.com/ammoready/orion_wholesale.
 
 
 ## License

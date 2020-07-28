@@ -1,15 +1,15 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'orion/version'
+require 'orion_wholesale/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "orion"
-  spec.version       = Orion::VERSION
-  spec.authors       = ["Ken Ebling"]
-  spec.email         = ["kenebling@gmail.com"]
+  spec.name          = "orion_wholesale"
+  spec.version       = OrionWholesale::VERSION
+  spec.authors       = ["Tony Beninate"]
+  spec.email         = ["tonybeninate@icloud.com"]
 
-  spec.summary       = %q{Ruby library for Orion}
+  spec.summary       = %q{Ruby library for OrionWholesale}
   spec.description   = %q{}
   spec.homepage      = ""
   spec.license       = "MIT"

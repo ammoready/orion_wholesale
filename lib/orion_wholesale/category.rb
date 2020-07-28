@@ -1,4 +1,4 @@
-module Orion
+module OrionWholesale
   # Category item response structure:
   #
   #   {

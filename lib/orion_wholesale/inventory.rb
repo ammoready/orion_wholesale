@@ -1,4 +1,4 @@
-module Orion
+module OrionWholesale
   class Inventory < Base
     
     CATALOG_DIR             = '/ammoready'.freeze

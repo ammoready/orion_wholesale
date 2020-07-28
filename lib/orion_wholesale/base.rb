@@ -1,10 +1,10 @@
-module Orion
+module OrionWholesale
   class Base
 
     def self.connect(options = {})
       requires!(options, :username, :password)
       
-      Net::SFTP.start(Orion.config.ftp_host, options[:username], password: options[:password], port: Orion.config.ftp_port) do |sftp|
+      Net::SFTP.start(OrionWholesale.config.ftp_host, options[:username], password: options[:password], port: OrionWholesale.config.ftp_port) do |sftp|
         yield(sftp)
       end
     end

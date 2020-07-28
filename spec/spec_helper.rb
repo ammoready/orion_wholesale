@@ -3,7 +3,7 @@ $LOAD_PATH.unshift File.expand_path("../../lib", __FILE__)
 require 'rspec'
 require 'pp'
 
-require 'orion'
+require 'orion_wholesale'
 
 # support files
 root = File.expand_path('../..', __FILE__)
@@ -13,7 +13,7 @@ RSpec.configure do |config|
 
   # configure options for dummy FTP connection
   config.before(:suite) do
-    Orion.configure do |config|
+    OrionWholesale.configure do |config|
       config.ftp_host      = "ftp.host.com"
       config.top_level_dir = "Test"
     end

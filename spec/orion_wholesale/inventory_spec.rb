@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Orion::Inventory do
+describe OrionWholesale::Inventory do
 
   let(:credentials) { { username: '100001', password: 'pass' } }
 
@@ -8,12 +8,12 @@ describe Orion::Inventory do
     before do
       tempfile = Tempfile.new(['exportXML_cq_barcodeFFL', '.csv'])
       FileUtils.copy_file(FixtureHelper.get_fixture_file('exportXML_cq_barcodeFFL.csv').path, tempfile.path)
-      allow_any_instance_of(Orion::Inventory).to receive(:get_file) { tempfile }
+      allow_any_instance_of(OrionWholesale::Inventory).to receive(:get_file) { tempfile }
     end
 
     it 'yields items' do
       count = 0
-      Orion::Inventory.all(credentials) do |item|
+      OrionWholesale::Inventory.all(credentials) do |item|
         count += 1
         case count
         when 1
@@ -37,12 +37,12 @@ describe Orion::Inventory do
     before do
       tempfile = Tempfile.new(['exportXML_cq_barcodeFFL_all', '.csv'])
       FileUtils.copy_file(FixtureHelper.get_fixture_file('exportXML_cq_barcodeFFL_all.csv').path, tempfile.path)
-      allow_any_instance_of(Orion::Inventory).to receive(:get_file) { tempfile }
+      allow_any_instance_of(OrionWholesale::Inventory).to receive(:get_file) { tempfile }
     end
 
     it 'yields items' do
       count = 0
-      Orion::Inventory.quantity(credentials) do |item|
+      OrionWholesale::Inventory.quantity(credentials) do |item|
         count += 1
         case count
         when 1
