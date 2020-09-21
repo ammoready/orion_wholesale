@@ -2,7 +2,7 @@ module OrionWholesale
   class Inventory < Base
     
     CATALOG_DIR             = '/ammoready'.freeze
-    CATALOG_FILENAME_PREFIX = 'orion_inv_web'.freeze
+    CATALOG_FILENAME_PREFIX = 'orion_inv_arweb'.freeze
 
     def initialize(options = {})
       requires!(options, :username, :password)
