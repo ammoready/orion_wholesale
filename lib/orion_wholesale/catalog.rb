@@ -1,8 +1,5 @@
 module OrionWholesale
   class Catalog < Base
-  
-    CATALOG_DIR             = '/ammoready'
-    CATALOG_FILENAME_PREFIX = 'orion_inv_arweb'
     
     def initialize(options = {})
       requires!(options, :username, :password)
@@ -15,7 +12,7 @@ module OrionWholesale
     end
 
     def all
-      tempfile = get_most_recent_file(CATALOG_FILENAME_PREFIX, CATALOG_DIR)
+      tempfile = get_most_recent_file(OrionWholesale.config.catalog_filename_prefix, OrionWholesale.config.top_level_dir)
       items = []
 
       File.open(tempfile).each_with_index do |row, i|
