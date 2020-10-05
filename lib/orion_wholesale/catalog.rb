@@ -26,29 +26,29 @@ module OrionWholesale
           next
         end
 
-        if row[@headers.index('Category1')].strip == 'Guns'
+        if row[@headers.index('Category1')].try(:strip) == 'Guns'
           # Guns
-          case row[@headers.index('Category2')].strip
+          case row[@headers.index('Category2')].try(:strip)
           when 'Long Guns'
-            @category    = row[@headers.index('Category3')].strip
-            @subcategory = row[@headers.index("Category4\n")].strip
+            @category    = row[@headers.index('Category3')].try(:strip)
+            @subcategory = row[@headers.index("Category4")].try(:strip)
           when 'Handguns'
-            @category    = row[@headers.index('Category2')].strip
-            @subcategory = row[@headers.index("Category3")].strip
+            @category    = row[@headers.index('Category2')].try(:strip)
+            @subcategory = row[@headers.index("Category3")].try(:strip)
           end
         else
           # Everything else
-          @category    = row[@headers.index('Category1')].strip
-          @subcategory = row[@headers.index('Category2')].strip
+          @category    = row[@headers.index('Category1')].try(:strip)
+          @subcategory = row[@headers.index('Category2')].try(:strip)
         end
 
         item = {
-          mfg_number:   row[@headers.index('Item ID')].strip,
-          upc:          row[@headers.index('Bar Code')].strip,
-          name:         row[@headers.index('Description')].strip,
+          mfg_number:   row[@headers.index('Item ID')].try(:strip),
+          upc:          row[@headers.index('Bar Code')].try(:strip),
+          name:         row[@headers.index('Description')].try(:strip),
           quantity:     row[@headers.index('Qty available')].to_i,
-          price:        row[@headers.index('Price')].strip,
-          brand:        row[@headers.index('Brand')].strip,
+          price:        row[@headers.index('Price')].try(:strip),
+          brand:        row[@headers.index('Brand')].try(:strip),
           category:     @category,
           subcategory:  @subcategory,
         }
