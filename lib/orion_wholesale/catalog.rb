@@ -40,14 +40,15 @@ module OrionWholesale
         end
 
         item = {
-          mfg_number:   row[@headers.index('Item ID')].try(:strip),
-          upc:          row[@headers.index('Bar Code')].try(:strip),
-          name:         row[@headers.index('Description')].try(:strip),
-          quantity:     row[@headers.index('Qty available')].to_i,
-          price:        row[@headers.index('Price')].try(:strip),
-          brand:        row[@headers.index('Brand')].try(:strip),
-          category:     @category,
-          subcategory:  @subcategory,
+          mfg_number:      row[@headers.index('Item ID')].try(:strip),
+          upc:             row[@headers.index('Bar Code')].try(:strip),
+          name:            row[@headers.index('Description')].try(:strip),
+          quantity:        row[@headers.index('Qty available')].to_i,
+          price:           row[@headers.index('Price')].try(:strip),
+          brand:           row[@headers.index('Brand')].try(:strip),
+          item_identifier: row[@headers.index("ImageFileName\n")].try(:strip),
+          category:        @category,
+          subcategory:     @subcategory,
         }
 
         items << item

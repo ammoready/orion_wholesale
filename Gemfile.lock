@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    orion_wholesale (1.1.6)
+    orion_wholesale (1.2.0)
       activesupport (>= 5, < 7)
       net-sftp
 
