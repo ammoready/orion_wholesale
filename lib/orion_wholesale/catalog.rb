@@ -46,9 +46,12 @@ module OrionWholesale
           quantity:        row[@headers.index('Qty available')].to_i,
           price:           row[@headers.index('Price')].try(:strip),
           brand:           row[@headers.index('Brand')].try(:strip),
-          item_identifier: row[@headers.index("ImageFileName\n")].try(:strip),
+          item_identifier: row[@headers.index("Item ID")].try(:strip),
           category:        @category,
           subcategory:     @subcategory,
+          features:        {
+                             image_name: row[@headers.index("ImageFileName\n")].try(:strip),
+                           },
         }
 
         items << item
